@@ -1,6 +1,6 @@
 # Comandos da ferramenta "grafos"
 
-A ferramenta "grafos" oferece funcionalidades relacionadas a grafos por meio de uma interface de linha de comando.
+A ferramenta "grafos" oferece funcionalidades relacionadas a grafos;
 
 * As verificações para imprimir os grafos estão implementadas no arquivo util.py.
 
