@@ -44,9 +44,9 @@ A ferramenta "grafos" oferece funcionalidades relacionadas a grafos;
 
 > ✔ `grafos inalcancaveis id=2 partida=A `
 
-> ✔  `grafos alcancaveis id=2 partida=A chegada=C`
+> ✔  `grafos bfs id=2 partida=A chegada=C`
 
-> ✔ `grafos alcancaveis id=2 partida=A chegada=C`
+> ✔ `grafos dfs id=2 partida=A chegada=C`
 
 
 
