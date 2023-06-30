@@ -24,36 +24,31 @@ def processar_comando(comando):
             vertice = comando[3].split('=')[1]
             obter_grau_por_id_vertice(id, vertice)
         
-        elif comando[1] == 'alcancaveis' and len(comando) == 3:
-            partida = comando[2].split('=')[1]
-            obter_alcancavel(partida)
-            
-        elif comando[1] == 'inalcancaveis' and len(comando) == 3:
-            partida = comando[2].split('=')[1]
-            obter_inalcancavel(partida)
-        
-        elif comando[1] == 'alcancaveis':
-            id = int(comando[2].split('=')[1])
-            partida = comando[3].split('=')[1]
-            obter_alcancaveis_por_id_partida(id, partida)
-        elif comando[1] == 'inalcancaveis':
-            id = int(comando[2].split('=')[1])
-            partida = comando[3].split('=')[1]
-            obter_inalcancaveis_por_id_partida(id, partida)
-        elif comando[1] == 'bfs' and len(comando) == 4:
-            partida = comando[2].split('=')[1]
-            chegada = comando[3].split('=')[1]
-            buscar_caminho_bfs(partida, chegada)
-        elif comando[1] == 'dfs' and len(comando) == 4:
-            partida = comando[2].split('=')[1]
-            chegada = comando[3].split('=')[1]
-            buscar_caminho_dfs(partida, chegada)
-        elif comando[1] == 'bfs':
-            id = int(comando[2].split('=')[1])
-            partida = comando[3].split('=')[1]
-            chegada = comando[4].split('=')[1]
-            bfs_por_id_partida(id, partida, chegada)
-
+    subcomando = comando[1]
+    switch = {
+        'carregar': lambda: carregar_grafos(comando[2]),
+        'multigrafos': verificar_multigrafos,
+        'pseudografos': verificar_pseudografos,
+        'desconexos': verificar_desconexos,
+        'completos': verificar_completos,
+        'graus': lambda: obter_graus_por_id(int(comando[3])) if comando[2] == 'id' else None,
+        'grau': lambda: obter_grau_por_id_vertice(int(comando[2].split('=')[1]), comando[3].split('=')[1]),
+       'alcancaveis': lambda: obter_alcancavel(comando[2].split('=')[1]) 
+                 if len(comando) == 3 
+                 else 
+                    obter_alcancaveis_por_id_partida(int(comando[2].split('=')[1]), comando[3].split('=')[1]),
+        'inalcancaveis': lambda: obter_inalcancavel(comando[2].split('=')[1]) 
+                 if len(comando) == 3 
+                 else obter_inalcancaveis_por_id_partida(int(comando[2].split('=')[1]), comando[3].split('=')[1]),
+        'bfs': lambda: buscar_caminho_bfs(comando[2].split('=')[1], comando[3].split('=')[1]) 
+                 if len(comando) == 4 
+                 else bfs_por_id_partida(int(comando[2].split('=')[1]), comando[3].split('=')[1], comando[4].split('=')[1]),
+        'dfs': lambda: buscar_caminho_dfs(comando[2].split('=')[1], comando[3].split('=')[1]) 
+                 if len(comando) == 4 
+                 else dfs_por_id_partida(int(comando[2].split('=')[1]), comando[3].split('=')[1], comando[4].split('=')[1]),
+        'sair': lambda: print("Encerrando o programa...")
+    }
+    
         elif comando[1] == 'dfs':
             id = int(comando[2].split('=')[1])
             partida = comando[3].split('=')[1]
