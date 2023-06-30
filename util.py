@@ -33,4 +33,47 @@ def obter_graus_por_id(id):
     else:
         print(f"Grafo de ID {id} não encontrado.")
 
+def obter_grau_por_id_vertice(id, vertice):
+    grafo = next((grafo for grafo in grafos if grafo.id == id), None)
+    if grafo:
+        grau = obter_grau(grafo, vertice)
+        print(f"Grau do vértice {vertice} do grafo {id}: {grau}")
+    else:
+        print(f"Grafo de ID {id} não encontrado.")
+
+def obter_alcancaveis_por_id_partida(id, partida):
+    grafo = next((grafo for grafo in grafos if grafo.id == id), None)
+    if grafo:
+        alcancaveis = obter_alcancaveis(grafo, partida)
+        print(f"Vértices alcançáveis a partir do vértice {partida} do grafo {grafo.id}:")
+        print(alcancaveis)
+    else:
+        print(f"Grafo de ID {id} não encontrado.")
+
+def obter_inalcancaveis_por_id_partida(id, partida):
+    grafo = next((grafo for grafo in grafos if grafo.id == id), None)
+    if grafo:
+        inalcancaveis = obter_inalcancaveis(grafo, partida)
+        print(f"Vértices inalcançáveis a partir do vértice {partida} do grafo {grafo.id}:")
+        print(inalcancaveis)
+    else:
+        print(f"Grafo de ID {id} não encontrado.")
+
+def buscar_caminho_bfs(partida, chegada):
+    for grafo in grafos:
+        caminho = bfs(grafo, partida, chegada)
+        if caminho:
+            print(f"Caminho entre o vértice {partida} e o vértice {chegada} do grafo {grafo.id} (BFS):")
+            print(caminho)
+        else:
+            print(f"Caminho entre o vértice {partida} e o vértice {chegada} do grafo {grafo.id} não encontrado.")
+
+def buscar_caminho_dfs(partida, chegada):
+    for grafo in grafos:
+        caminho = dfs(grafo, partida, chegada)
+        if caminho:
+            print(f"Caminho entre o vértice {partida} e o vértice {chegada} do grafo {grafo.id} (DFS):")
+            print(caminho)
+        else:
+            print(f"Caminho entre o vértice {partida} e o vértice {chegada} do grafo {grafo.id} não encontrado.")
 
