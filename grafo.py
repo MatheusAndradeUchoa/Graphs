@@ -95,6 +95,35 @@ def obter_inalcancaveis(grafo, partida):
     vertices_alcancaveis = obter_alcancaveis(grafo, partida)
     return [vertice for vertice in grafo.vertices if vertice not in vertices_alcancaveis]
 
+# Função de busca em largura (BFS) para encontrar o caminho entre dois vértices
+def bfs(grafo, partida, chegada):
+    visitados = set()
+    fila = [[partida]]
+
+    while fila:
+        caminho = fila.pop(0)
+        vertice = caminho[-1]
+        if vertice == chegada:
+            return caminho
+        elif vertice not in visitados:
+            for aresta in grafo.arestas:
+                if vertice in aresta:
+                    v = aresta[0] if aresta[0] != vertice else aresta[1]
+                    nova_caminho = list(caminho)
+                    nova_caminho.append(v)
+                    fila.append(nova_caminho)
+            visitados.add(vertice)
+
+    return None
+
+# Função de busca em profundidade (DFS) para encontrar o caminho entre dois vértices
+def dfs(grafo, partida, chegada):
+    visitados = set()
+    caminho = []
+
+    def dfs_util(grafo, vertice, chegada, visitados, caminho):
+        visitados.add(vertice)
+        caminho.append(vertice)
 
         if vertice == chegada:
             return True
