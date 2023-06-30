@@ -67,6 +67,34 @@ def is_completo(grafo):
     max_arestas = len(vertices) * (len(vertices) - 1) // 2
     return len(arestas) == max_arestas
 
+# Função para obter os graus dos vértices de um grafo
+def obter_graus(grafo):
+    graus = {}
+    for vertice in grafo.vertices:
+        grau = sum(1 for aresta in grafo.arestas if vertice in aresta)
+        graus[vertice] = grau
+    return graus
+
+# Função para obter o grau de um vértice específico de um grafo
+def obter_grau(grafo, vertice):
+    return sum(1 for aresta in grafo.arestas if vertice in aresta)
+
+# Função para obter os vértices alcançáveis a partir de um vértice de partida
+def obter_alcancaveis(grafo, partida):
+    vertices_alcancaveis = [partida]
+    for vertice in vertices_alcancaveis:
+        for aresta in grafo.arestas:
+            if vertice in aresta:
+                v = aresta[0] if aresta[0] != vertice else aresta[1]
+                if v not in vertices_alcancaveis:
+                    vertices_alcancaveis.append(v)
+    return vertices_alcancaveis
+
+# Função para obter os vértices inalcançáveis a partir de um vértice de partida
+def obter_inalcancaveis(grafo, partida):
+    vertices_alcancaveis = obter_alcancaveis(grafo, partida)
+    return [vertice for vertice in grafo.vertices if vertice not in vertices_alcancaveis]
+
 
 
 
