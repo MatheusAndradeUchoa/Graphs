@@ -96,6 +96,23 @@ def obter_inalcancaveis(grafo, partida):
     return [vertice for vertice in grafo.vertices if vertice not in vertices_alcancaveis]
 
 
+        if vertice == chegada:
+            return True
+
+        for aresta in grafo.arestas:
+            if vertice in aresta:
+                v = aresta[0] if aresta[0] != vertice else aresta[1]
+                if v not in visitados:
+                    if dfs_util(grafo, v, chegada, visitados, caminho):
+                        return True
+
+        caminho.pop()
+        return False
+
+    if dfs_util(grafo, partida, chegada, visitados, caminho):
+        return caminho
+
+    return None
 
 
 
