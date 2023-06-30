@@ -45,6 +45,31 @@ def is_pseudografo(grafo):
     
     return False
 
+# Função para verificar se um grafo é desconexo
+def is_desconexo(grafo):
+    vertices_alcancaveis = [grafo.vertices[0]]
+    for vertice in vertices_alcancaveis:
+        for aresta in grafo.arestas:
+            if vertice in aresta:
+                v = aresta[0] if aresta[0] != vertice else aresta[1]
+                if v not in vertices_alcancaveis:
+                    vertices_alcancaveis.append(v)
+    return len(vertices_alcancaveis) != len(grafo.vertices)
+
+# Função para verificar se um grafo é completo
+def is_completo(grafo):
+    vertices = grafo.vertices
+    arestas = grafo.arestas
+    
+    if not vertices:
+        return False
+    
+    max_arestas = len(vertices) * (len(vertices) - 1) // 2
+    return len(arestas) == max_arestas
+
+
+
+
 
 
 
