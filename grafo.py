@@ -25,3 +25,26 @@ def is_multigrafo(grafo):
             return True
     return False
 
+# Função para verificar se um grafo é pseudografo
+def is_pseudografo(grafo):
+    contador = {}
+    for aresta in grafo.arestas:
+        tupla_aresta = tuple(aresta)
+        if tupla_aresta in contador:
+            contador[tupla_aresta] += 1
+        else:
+            contador[tupla_aresta] = 1
+    
+    for count in contador.values():
+        if count > 2:
+            return True
+    
+    for aresta in grafo.arestas:
+        if aresta[0] == aresta[1]:
+            return True
+    
+    return False
+
+
+
+
