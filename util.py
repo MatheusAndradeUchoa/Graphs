@@ -103,8 +103,7 @@ def dfs_por_id_partida(id, partida, chegada):
     else:
         print(f"Grafo de ID {id} não encontrado.")
         
-        
-        
+               
 def obter_alcancavel(partida):
     for grafo in grafos:
         alcancaveis = obter_alcancaveis(grafo, partida)
