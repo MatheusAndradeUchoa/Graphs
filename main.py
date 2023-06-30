@@ -49,16 +49,11 @@ def processar_comando(comando):
         'sair': lambda: print("Encerrando o programa...")
     }
     
-        elif comando[1] == 'dfs':
-            id = int(comando[2].split('=')[1])
-            partida = comando[3].split('=')[1]
-            chegada = comando[4].split('=')[1]
-            dfs_por_id_partida(id, partida, chegada)
-        elif comando[1] == 'sair':
-            print("Encerrando o programa...")
-            return False
-        else:
-            print("Comando inválido.")
+    func = switch.get(subcomando)
+    if func:
+        func()
+    else:
+        print("Comando inválido.")
     else:
         print("Comando inválido.")
     return True
